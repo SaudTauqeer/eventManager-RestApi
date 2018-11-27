@@ -3,6 +3,9 @@ var cors = require('cors');
 
 // server config imports and routes
 const routes = require("./routes/routes");
+const cookieSession = require('cookie-session');
+const passport = require('passport');
+const authRoutes = require("./routes/authRoute");
 const eventRoute = require("./routes/event.routes");
 const express = require("express");
 const app = express();
@@ -14,12 +17,20 @@ app.use(cors());
 app.use(bodyParser.json());
 
 
-//middleware
+// set up session cookies
+app.use(cookieSession({
+    maxAge: 24 * 60 * 60 * 1000,
+    keys: [process.env.COOKIE_SESSION_KEY]
+}));
+
+// initialize passport
+app.use(passport.initialize());
+app.use(passport.session());
+
+//// set up routes
+app.use('/auth', authRoutes);
 app.use(routes);
 app.use(eventRoute);
-
-
-
 
 
 app.listen(port, (error)=>{
