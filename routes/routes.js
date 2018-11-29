@@ -2,8 +2,13 @@ const express = require("express");
 const router = express.Router();
 
 router.get("/", (req, res)=>{
-res.send("go to /api/event and use different CRUD methods").json()});
-
+    if (req.user) {
+        res.send(req.user.username);
+    }
+    if (!req.user) {
+        res.send("not authorized please register first");
+    }
+});
 
 
 
