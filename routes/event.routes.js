@@ -57,18 +57,18 @@ router.get("/api/event", (req, res) =>{
 });
 
 //delete event by id
-router.delete("/api/event/:eventId", (req, res)=>{
-    if (req.user) {
-        
-    userModel.findByIdAndUpdate(req.user._id, {
-        $pull: {events: {
-            _id: req.params.eventId 
-        }}
-    }, function(err) {
-        console.log(err);
+    router.delete("/api/event/:eventId", (req, res)=>{
+        if (req.user) {
+            
+        userModel.findByIdAndUpdate(req.user._id, {
+            $pull: {events: {
+                _id: req.params.eventId 
+            }}
+        }, function(err) {
+            console.log(err);
+        });
+        }
     });
-    }
-});
 
 //     //     userModel.findOneAndDelete({ _id : req.params.id}, (err, event) => {
 //     //         // As always, handle any potential errors:
