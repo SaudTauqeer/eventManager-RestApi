@@ -18,15 +18,15 @@ router.post("/api/event", (req, res)=>{
     if (!req.user) {res.status(401).send('Not authorized to view this page.')};
     if (req.user) {
     // Form data empty or not a user return 400 code.
-        if (!req.user || formStatement) {
+        if (!req.user || invalidFormStatement) {
             res.status(400).send('Bad Request');
         }
         // if form is valid
-        if (!formStatement)
+        if (!invalidFormStatement)
         {
         let eventData = {
             "event": req.body.data.event, 
-            "sendingHour": req.body.data.bodysendingHour, 
+            "sendingHour": req.body.data.sendingHour, 
             "sendingMinutes": req.body.data.sendingMinutes,
             "cardUrl": req.body.data.cardUrl, 
             "date": req.body.data.date, 
