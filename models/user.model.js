@@ -2,7 +2,11 @@ const mongoose = require('mongoose');
 const MONGO_USER = process.env.MONGO_USER_ID;
 const MONGO_PW = process.env.MONGO_USER_PW;
 
-mongoose.connect(`mongodb://${MONGO_USER}:${MONGO_PW}@ds159993.mlab.com:59993/events-db`, { useNewUrlParser: true }  );
+mongoose.connect(`mongodb://${MONGO_USER}:${MONGO_PW}@ds159993.mlab.com:59993/events-db`, { useNewUrlParser: true });
+
+let TimeZoneSchema = new mongoose.Schema({
+    timeZone: {type:String, required: true},
+});
 
 
 let EventSchema = new mongoose.Schema({
@@ -25,7 +29,7 @@ const UserSchema = new mongoose.Schema({
     username: {type: String},
     thumbnail: {type: String},
     events:  [EventSchema],
-    timeZone: {type: String}
+    userZone: [TimeZoneSchema]
     
 });
 

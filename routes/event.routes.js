@@ -15,11 +15,12 @@ router.post("/api/event", (req, res)=>{
 
 
     //if not a authorized user.
-    if (!req.user) {res.status(401).send('Not authorized to view this page.')};
+    if (!req.user) {res.sendStatus(401)};
+    // if authorized
     if (req.user) {
     // Form data empty or not a user return 400 code.
         if (!req.user || invalidFormStatement) {
-            res.status(400).send('Bad Request');
+            res.sendStatus(400);
         }
         // if form is valid
         if (!invalidFormStatement)
@@ -41,17 +42,35 @@ router.post("/api/event", (req, res)=>{
             { "new": true, "upsert": true },
             function (err, doc) {
                 if (err) throw err;
-                res.status(201).send('Event Successfully created.');
+                res.sendStatus(201);
             }
         );
     }
 }
 });
+
+// post timeZone data route.
+router.post("/api/zone", (req, res)=> {
+    //if not a authorized user.
+    if (!req.user) {res.sendStatus(401)};
+        //if a user
+    if (req.user) {
+        const timeZone = {timeZone: req.body.data.timeZone};
+            userModel.findByIdAndUpdate(req.user._id,
+                { "$push": { "userZone":  timeZone } },
+                { "new": true, "upsert": true },
+                function (err, doc) {
+                    if (err) throw err;
+                    res.sendStatus(201);
+                });
+    }
+});
+
     
 //Get all events
 router.get("/api/event", (req, res) =>{
         //if not a user send 401 status code.
-    if (!req.user) {res.status(401).send('Not authorized to view this page.')};
+    if (!req.user) {res.sendStatus(401)};
         // if a registered user send events and 200 code.
     if (req.user) {
         userModel.findById(req.user._id, (err, data)=>{
@@ -63,7 +82,7 @@ router.get("/api/event", (req, res) =>{
 // get current user.
 router.get("/api/user", (req, res) =>{
         //if not a user send 401 status code.
-    if (!req.user) {res.status(401).send('Not authorized to view this page.')};
+        if (!req.user) {res.sendStatus(401)};
         // if a registered user send current username and 200 code.
     if (req.user) {
         userModel.findById(req.user._id, (err, data)=>{
@@ -76,7 +95,7 @@ router.get("/api/user", (req, res) =>{
     //delete event by id
     router.delete("/api/event/:eventId", (req, res)=>{
                 //if not a user send 401 status code.
-             if (!req.user) {res.status(401).send('Not authorized to view this page.')};
+                if (!req.user) {res.sendStatus(401)};
             if (req.user) {
             // props.orignal is a react-table object containing props of the "e.target"
             // /api/event/:eventId --> eventId params is the specified event object id in the user document.
