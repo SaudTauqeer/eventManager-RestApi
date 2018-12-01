@@ -4,7 +4,7 @@ const router = express.Router();
 
 //Create a new event
 router.post("/api/event", (req, res)=>{
-
+    
     // statment that checks if form data is okay.
     const formStatement = 
     !req.user && 
