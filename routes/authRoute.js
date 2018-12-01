@@ -5,7 +5,7 @@
     // auth logout
     router.get('/logout', (req, res) => {
         req.logout();
-        res.send("Logged out");
+        res.redirect("http://localhost:3000/");
     });
 
     // auth with google+
