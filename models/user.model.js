@@ -15,8 +15,7 @@ let EventSchema = new mongoose.Schema({
     text: {type:String, required: true, },
     subject: {type:String, required: true},
     to: {type:String, required: true },
-    from: {type:String, required:true},
-    html: {type:String},
+    from: {type:String, required:true}
 });
 
 
