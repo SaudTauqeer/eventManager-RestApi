@@ -4,7 +4,7 @@ const router = express.Router();
 
 //Create a new event
 router.post("/api/event", (req, res)=>{
-    
+
     // statment that checks if form data is okay.
     const formStatement = 
     !req.user && 
@@ -12,7 +12,7 @@ router.post("/api/event", (req, res)=>{
     || req.body.sendingMinutes ||
     req.body.date || req.body.text ||
     req.body.subject || req.body.to ||
-    req.body.from
+    req.body.from === null
 
     if (req.user && req.body.data) {
     // Form data empty or not a user return 400 code.
