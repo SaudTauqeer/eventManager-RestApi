@@ -7,12 +7,14 @@ router.post("/api/event", (req, res)=>{
 
     // statment that checks if form data is okay.
     const formStatement = 
-    !req.user && 
     req.body.event || req.body.sendingHour
     || req.body.sendingMinutes ||
     req.body.date || req.body.text ||
     req.body.subject || req.body.to ||
     req.body.from === null
+
+    //if not a authorized user.
+    if (!req.user) {res.status(401).send('Not authorized to view this page.')};
 
     if (req.user && req.body.data) {
     // Form data empty or not a user return 400 code.
