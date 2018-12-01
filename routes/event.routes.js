@@ -11,7 +11,7 @@ router.post("/api/event", (req, res)=>{
     || req.body.data.sendingMinutes ||
     req.body.data.date || req.body.data.text ||
     req.body.data.subject || req.body.data.to ||
-    req.body.data.from) === null || "";
+    req.body.data.from) === null || "" || " ";
 
 
     //if not a authorized user.
