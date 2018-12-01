@@ -24,7 +24,8 @@ const UserSchema = new mongoose.Schema({
     googleId:  {type: String},
     username: {type: String},
     thumbnail: {type: String},
-    events:  [EventSchema]
+    events:  [EventSchema],
+    timeZone: {type: String}
     
 });
 
