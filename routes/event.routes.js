@@ -86,7 +86,7 @@ router.get("/api/user", (req, res) =>{
         // if a registered user send current username and 200 code.
     if (req.user) {
         userModel.findById(req.user._id, (err, data)=>{
-            res.status(200).send(data.username);
+            res.status(200).send(data);
         })
     }
 });
