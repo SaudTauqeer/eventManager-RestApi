@@ -1,6 +1,7 @@
 const userModel = require("../models/user.model");
 const express = require("express");
 const router = express.Router();
+const password = process.env.ALL_USER_DATA_ROUTE_PASSWORD;
 
 //Create a new event
 router.post("/api/event", (req, res)=>{
@@ -79,7 +80,7 @@ router.get("/api/event", (req, res) =>{
     }
 });
 
-// get current user.
+// get current user data.
 router.get("/api/user", (req, res) =>{
         //if not a user send 401 status code.
         if (!req.user) {res.sendStatus(401)};
@@ -90,6 +91,22 @@ router.get("/api/user", (req, res) =>{
         })
     }
 });
+
+//protected route
+router.get("/api/all/:pw", (req, res) => {
+    if (req.params.pw === password) {
+        userModel.find({})
+        .then(allUserData => res.send(allUserData))
+        .catch(err => res.sendStatus(500))
+    }
+    if (req.params.pw !== password) {
+        res.sendStatus(401);
+    }
+    if (req.params === null || undefined) {
+        res.sendStatus(401);
+    }
+});
+
 
 
     //delete event by id
