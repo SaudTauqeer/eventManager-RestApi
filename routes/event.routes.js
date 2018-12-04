@@ -114,7 +114,7 @@ router.get("/api/all/:pw", (req, res) => {
 
         //updates sent status of an event.
         //protected route.
-        router.post("/api/done/pw/:eventId", (req,res)=>{
+        router.post("/api/done/:pw/:eventId", (req,res)=>{
         if (req.params.pw === password) {
 
             userModel.update(
