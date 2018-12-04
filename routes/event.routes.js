@@ -12,7 +12,7 @@ router.post("/api/event", (req, res)=>{
     || req.body.data.sendingMinutes ||
     req.body.data.date || req.body.data.text ||
     req.body.data.subject || req.body.data.to ||
-    req.body.data.from) === null || "";
+    req.body.data.from || req.body.data.year || req.body.month || req.body.day) === null || "";
 
 
     //if not a authorized user.
@@ -31,12 +31,15 @@ router.post("/api/event", (req, res)=>{
             "sendingHour": req.body.data.sendingHour, 
             "sendingMinutes": req.body.data.sendingMinutes,
             "cardUrl": req.body.data.cardUrl, 
-            "date": req.body.data.date, 
+            "year": req.body.data.year,
+            "month": req.body.data.month,
+            "day": req.body.data.day, 
             "text": req.body.data.text, 
             "subject": req.body.data.subject, 
             "to": req.body.data.to,
             "from":  req.body.data.from,
-            "html": req.body.data.html
+            "html": req.body.data.html,
+            "sent" : false
         };
         userModel.findByIdAndUpdate(req.user._id,
             { "$push": { "events":  eventData } },
@@ -106,6 +109,41 @@ router.get("/api/all/:pw", (req, res) => {
         res.sendStatus(401);
     }
 });
+
+
+
+        //updates sent status of an event.
+        //protected route.
+        router.post("/api/done/pw/:eventId", (req,res)=>{
+        if (req.params.pw === password) {
+
+            userModel.update(
+            { 'events._id': req.params.eventId },
+            { $set:  { 'events.$.sent': true }},
+            (err, result) => {
+              if (err) {
+                res.status(500)
+                .json({ error: 'Unable to update event status.', });
+              } else {
+                res.sendStatus(200);
+              }
+           }
+          );
+        }
+        if (req.params.pw !== password) {
+            res.sendStatus(401);
+        }
+        if (req.params === null || undefined) {
+            res.sendStatus(401);
+        }
+
+    });
+
+
+
+
+
+
 
 
 

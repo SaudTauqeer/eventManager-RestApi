@@ -19,7 +19,11 @@ let EventSchema = new mongoose.Schema({
     text: {type:String, required: true, },
     subject: {type:String, required: true},
     to: {type:String, required: true },
-    from: {type:String, required:true}
+    from: {type:String, required:true},
+    month: {type:Number, required:true, trim: true},
+    year: {type:Number, required:true,trim:true},
+    day: {type:Number, required:true, trim:true},
+    sent: {type: Boolean}
 });
 
 
