@@ -5,17 +5,7 @@ const app = express();
 app.use(cors());
 const port = process.env.PORT;
 
-app.use(function(req, res, next) {
-    res.header('Access-Control-Allow-Credentials', true);
-    res.header('Access-Control-Allow-Origin','http://eventmanager-web.herokuapp.com');
-    res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
-    res.header('Access-Control-Allow-Headers', 'X-Requested-With, X-HTTP-Method-Override, Content-Type, Accept');
-    if ('OPTIONS' == req.method) {
-      res.send(200);
-    } else {
-        next();
-    }
-  });
+app.use(cors({origin: 'https://eventmanager-web.herokuapp.com'}));
 
 
 
