@@ -5,7 +5,6 @@ const app = express();
 app.use(cors());
 const port = process.env.PORT;
 
-app.use(function (req, res, next) {
 
 // Add headers
 app.use(function (req, res, next) {
