@@ -4,29 +4,29 @@ const express = require("express");
 const app = express();
 
 app.options('*', cors())
-app.use(cors({origin: true}));
+app.use(cors({origin: null}));
 const port = process.env.PORT;
 
 
-// Add headers
-app.use(function (req, res, next) {
+// // Add headers
+// app.use(function (req, res, next) {
 
-    // Website you wish to allow to connect
-    // res.setHeader('Access-Control-Allow-Origin', 'https://eventmanager-web.herokuapp.com');
+//     // Website you wish to allow to connect
+//     // res.setHeader('Access-Control-Allow-Origin', 'https://eventmanager-web.herokuapp.com');
 
-    // Request methods you wish to allow
-    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
+//     // Request methods you wish to allow
+//     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
 
-    // Request headers you wish to allow
-    res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
+//     // Request headers you wish to allow
+//     res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
 
-    // Set to true if you need the website to include cookies in the requests sent
-    // to the API (e.g. in case you use sessions)
-    res.setHeader('Access-Control-Allow-Credentials', true);
+//     // Set to true if you need the website to include cookies in the requests sent
+//     // to the API (e.g. in case you use sessions)
+//     res.setHeader('Access-Control-Allow-Credentials', true);
 
-    // Pass to next layer of middleware
-    next();
-});
+//     // Pass to next layer of middleware
+//     next();
+// });
 
 // server config imports and routes
 const passportSetup = require('./config/passportSetup');
