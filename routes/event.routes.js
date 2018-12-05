@@ -1,4 +1,5 @@
-require('dotenv').config();
+
+var cors = require('cors');
 const userModel = require("../models/user.model");
 const express = require("express");
 const router = express.Router();
