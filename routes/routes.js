@@ -6,7 +6,7 @@ router.get("/", (req, res)=>{
     if (req.user) {
         res.send(req.user.username);
     }
-    if (!req.user) {
+     if (!req.user) {
         res.send("not authorized please register first");
     }
 });
