@@ -29,18 +29,18 @@ router.post("/api/event", (req, res)=>{
         if (!invalidFormStatement)
         {
         let eventData = {
-            "event": req.body.data.event, 
-            "sendingHour": req.body.data.sendingHour, 
-            "sendingMinutes": req.body.data.sendingMinutes,
-            "cardUrl": req.body.data.cardUrl, 
-            "year": req.body.data.year,
-            "month": req.body.data.month,
-            "day": req.body.data.day, 
-            "text": req.body.data.text, 
-            "subject": req.body.data.subject, 
-            "to": req.body.data.to,
-            "from":  req.body.data.from,
-            "html": req.body.data.html,
+            "event": req.body.body.event, 
+            "sendingHour": req.body.body.sendingHour, 
+            "sendingMinutes": req.body.body.sendingMinutes,
+            "cardUrl": req.body.body.cardUrl, 
+            "year": req.body.body.year,
+            "month": req.body.body.month,
+            "day": req.body.body.day, 
+            "text": req.body.body.text, 
+            "subject": req.body.body.subject, 
+            "to": req.body.body.to,
+            "from":  req.body.body.from,
+            "html": req.body.body.html,
             "sent" : false
         };
         userModel.findByIdAndUpdate(req.user._id,
@@ -61,7 +61,7 @@ router.post("/api/zone", (req, res)=> {
     if (!req.user) {res.sendStatus(401)};
         //if a user
     if (req.user) {
-        const timeZone = {timeZone: req.body.data.timeZone};
+        const timeZone = {timeZone: req.body.body.timeZone};
             userModel.findByIdAndUpdate(req.user._id,
                 { "$push": { "userZone":  timeZone } },
                 { "new": true, "upsert": true },
