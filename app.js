@@ -3,17 +3,17 @@ const express = require("express");
 const app = express();
 const port = process.env.PORT;
 
-    app.use(function(req, res, next) {
-        res.header('Access-Control-Allow-Credentials', true);
-        res.header(res.header('Access-Control-Allow-Origin', 'https://eventmanager-web.herokuapp.com'));
-        res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
-        res.header('Access-Control-Allow-Headers', 'X-Requested-With, X-HTTP-Method-Override, Content-Type, Accept');
-        if ('OPTIONS' == req.method) {
-            res.sendStatus(200);
-        } else {
-            next();
-        }
-        });
+    // app.use(function(req, res, next) {
+    //     res.header('Access-Control-Allow-Credentials', true);
+    //     res.header(res.header('Access-Control-Allow-Origin', 'http://localhost:8000/'));
+    //     res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
+    //     res.header('Access-Control-Allow-Headers', 'X-Requested-With, X-HTTP-Method-Override, Content-Type, Accept');
+    //     if ('OPTIONS' == req.method) {
+    //         res.sendStatus(200);
+    //     } else {
+    //         next();
+    //     }
+    //     });
 
 require('dotenv').config();
 var cors = require('cors');
@@ -31,7 +31,7 @@ const eventRoute = require("./routes/event.routes");
 
 
 // cors and bodyparser.
-app.use(cors());
+// app.use(cors());
 app.use(bodyParser.json());
 
 
