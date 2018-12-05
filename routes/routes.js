@@ -11,9 +11,6 @@ router.get("/", (req, res)=>{
     }
 });
 
-router.get("/verify" , (req,res)=>{
-    res.sendFile("../googled3ba8213735dc014.html");
-});
 
 
 
