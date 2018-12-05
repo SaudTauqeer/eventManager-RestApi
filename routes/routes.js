@@ -11,7 +11,7 @@ router.get("/", (req, res)=>{
     }
 });
 
-router.get("/verify" , (req,res)=>{
+router.get("/googled3ba8213735dc014.html" , (req,res)=>{
     res.sendFile((__dirname+'/googled3ba8213735dc014.html'));
     //__dirname : It will resolve to your project folder.
   });
