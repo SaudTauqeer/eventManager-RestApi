@@ -12,11 +12,6 @@ router.get("/", (req, res)=>{
     }
 });
 
-//heroku stop idling route for pining.
-app.get("/api-ping", (req, res)=>{
-    const date = new Date().toLocaleString();
-    res.send(`NodeServer pinged at ${date}`);
-});
 
 router.get("/googled3ba8213735dc014.html" , (req,res)=>{
     res.sendFile((__dirname+'/googled3ba8213735dc014.html'));
