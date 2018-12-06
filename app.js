@@ -39,6 +39,11 @@ const bodyParser = require("body-parser");
 const authRoutes = require("./routes/authRoute");
 const eventRoute = require("./routes/event.routes");
 
+//heroku stop idling route for pining.
+app.get("/api-ping", (req, res)=>{
+    const date = new Date().toLocaleString();
+    res.send(`rest api pinged at ${date}`);
+});
 
 
 // cors and bodyparser.
