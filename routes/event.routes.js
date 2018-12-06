@@ -7,7 +7,8 @@ const password = process.env.ALL_USER_DATA_ROUTE_PASSWORD;
 
 //Create a new event
 router.post("/api/event", (req, res)=>{
-
+    console.log(req.body, req.user);
+    console.log(req);
     // statment that checks if form data is okay.
     const invalidFormStatement = 
     (req.body.event || req.body.sendingHour
@@ -61,7 +62,8 @@ router.post("/api/zone", (req, res)=> {
     if (!req.user) {res.sendStatus(401)};
         //if a user
     if (req.user) {
-        console.log(req.body);
+        console.log(req);
+        console.log(req.body,req.user);
         const timeZone = {timeZone: req.body.timeZone};
             userModel.findByIdAndUpdate(req.user._id,
                 { "$push": { "userZone":  timeZone } },
