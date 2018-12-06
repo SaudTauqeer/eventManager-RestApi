@@ -61,7 +61,7 @@ router.post("/api/zone", (req, res)=> {
     if (!req.user) {res.sendStatus(401)};
         //if a user
     if (req.user) {
-        console.log(req);
+        console.log(req.body);
         const timeZone = {timeZone: req.body.timeZone};
             userModel.findByIdAndUpdate(req.user._id,
                 { "$push": { "userZone":  timeZone } },
