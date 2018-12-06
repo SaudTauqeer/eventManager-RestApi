@@ -10,11 +10,11 @@ router.post("/api/event", (req, res)=>{
 
     // statment that checks if form data is okay.
     const invalidFormStatement = 
-    (req.body.data.event || req.body.data.sendingHour
-    || req.body.data.sendingMinutes ||
-    req.body.data.date || req.body.data.text ||
-    req.body.data.subject || req.body.data.to ||
-    req.body.data.from || req.body.data.year || req.body.month || req.body.day) === null || "";
+    (req.body.event || req.body.sendingHour
+    || req.body.sendingMinutes ||
+    req.body.date || req.body.text ||
+    req.body.subject || req.body.to ||
+    req.body.from || req.body.year || req.body.month || req.body.day) === null || "";
 
 
     //if not a authorized user.
@@ -29,18 +29,18 @@ router.post("/api/event", (req, res)=>{
         if (!invalidFormStatement)
         {
         let eventData = {
-            "event": req.body.body.event, 
-            "sendingHour": req.body.body.sendingHour, 
-            "sendingMinutes": req.body.body.sendingMinutes,
-            "cardUrl": req.body.body.cardUrl, 
-            "year": req.body.body.year,
-            "month": req.body.body.month,
-            "day": req.body.body.day, 
-            "text": req.body.body.text, 
-            "subject": req.body.body.subject, 
-            "to": req.body.body.to,
-            "from":  req.body.body.from,
-            "html": req.body.body.html,
+            "event": req.body.event, 
+            "sendingHour": req.body.sendingHour, 
+            "sendingMinutes": req.body.sendingMinutes,
+            "cardUrl": req.body.cardUrl, 
+            "year": req.body.year,
+            "month": req.body.month,
+            "day": req.body.day, 
+            "text": req.body.text, 
+            "subject": req.body.subject, 
+            "to": req.body.to,
+            "from":  req.body.from,
+            "html": req.body.html,
             "sent" : false
         };
         userModel.findByIdAndUpdate(req.user._id,
