@@ -5,7 +5,7 @@ const password = process.env.ALL_USER_DATA_ROUTE_PASSWORD;
 
 //Create a new event
 router.post("/api/event", (req, res)=>{
-    if (!res.user) {return res.sendStatus(401)};
+    if (!req.user) {return res.sendStatus(401)};
         // event data to be stored.
     let eventData = {
         "event": req.body.event, 
