@@ -1,7 +1,7 @@
 # Event Manager - RESTful API
 
-This is a express based REST API containg routes and different endpoints such as CRUD.
-* Uses Oauth 2.0 using google strat and passportJs with  for authentication and authorization. Data is stored on mlab's MongoDb cloud hosting.
+This is an express-based REST API containing routes and different endpoints such as CRUD.
+* Uses Oauth 2.0 using google strat and passportJs for authentication and authorization. Data is stored on mlab's MongoDb cloud hosting.
 
 # Live Project 
 
@@ -13,9 +13,9 @@ These instructions will get you a copy of the project up and running on your loc
 
 ### Prerequisites
 
-* You would need to setup mlab database.
+* You need to setup mlab database.
 * Register your app to google's API developer console
-* Envoirnment variables [mentioned below in snippet]
+* Environment variables [mentioned below in snippet]
 ```
 MONGO_USER_ID
 MONGO_USER_PW
@@ -27,7 +27,7 @@ ALL_USER_DATA_ROUTE_PASSWORD (This is needed for accessing protected routes)
 
 ### Installing
 
-Package.json looks like this
+package.json looks like this
 
 ``` "
 scripts": {"start": "node app.js"},
@@ -46,7 +46,7 @@ scripts": {"start": "node app.js"},
     "passport-google-oauth20": "^1.0.0"
   }
   ```
-`npm i` or `npm install`
+ Run `npm i` or `npm install`
 
  Wait for the dependencies to install.
  
