@@ -21,7 +21,7 @@ router.post("/api/event", (req, res)=>{
         "from":  req.body.from,
         "html": req.body.html,
         "sent" : false
-    };
+};
     if (req.user){
         if (eventData === null || ""){return res.sendStatus(400)};
         userModel.findByIdAndUpdate(req.user._id,
