@@ -11,20 +11,17 @@ router.post("/api/event", (req, res)=>{
     && req.body.sendingMinutes &&
     req.body.date && req.body.text &&
     req.body.subject && req.body.to &&
-    req.body.from && req.body.year && req.body.month && req.body.day) === null && "";
+    req.body.from && req.body.year && req.body.month && req.body.day);
 
 
     //if not a authorized user.
     if (!req.user) {res.sendStatus(401)};
     // if authorized
     if (req.user) {
+        if (invalidFormStatement === null){return res.sendStatus(400);}
+        if (invalidFormStatement === ""){return res.sendStatus(400);}
     // Form data empty or not a user return 400 code.
-        if (!req.user || invalidFormStatement) {
-            res.sendStatus(400);
-        }
         // if form is valid
-        if (!invalidFormStatement)
-        {
         let eventData = {
             "event": req.body.event, 
             "sendingHour": req.body.sendingHour, 
@@ -48,7 +45,6 @@ router.post("/api/event", (req, res)=>{
                 res.sendStatus(201);
             }
         );
-    }
 }
 });
 
