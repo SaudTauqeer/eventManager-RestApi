@@ -23,7 +23,7 @@ router.post("/api/event", (req, res)=>{
         "sent" : false
     };
     if (req.user){
-        if (eventData === null || ""){return res.sendStatus(401)};
+        if (eventData === null || ""){return res.sendStatus(400)};
         userModel.findByIdAndUpdate(req.user._id,
             { "$push": { "events":  eventData } },
             { "new": true, "upsert": true },
