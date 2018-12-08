@@ -11,8 +11,8 @@ let TimeZoneSchema = new mongoose.Schema({
 
 let EventSchema = new mongoose.Schema({
     event: {type:String, required: true},
-    sendingHour: {type: String, required:true},
-    sendingMinutes: {type: String, required:true },
+    sendingHour: {type: Number, required:true},
+    sendingMinutes: {type: Number, required:true },
     cardUrl: {type: String, },
     date: {type:String, required: true},
 
@@ -20,9 +20,9 @@ let EventSchema = new mongoose.Schema({
     subject: {type:String, required: true},
     to: {type:String, required: true },
     from: {type:String, required:true},
-    month: {type:String, required:true, trim: true},
-    year: {type:String, required:true,trim:true},
-    day: {type:String, required:true, trim:true},
+    month: {type:Number, required:true, trim: true},
+    year: {type:Number, required:true,trim:true},
+    day: {type:Number, required:true, trim:true},
     sent: {type: Boolean}
 });
 
