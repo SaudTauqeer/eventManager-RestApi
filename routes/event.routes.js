@@ -32,7 +32,9 @@ if (req.user){
                 res.sendStatus(201);
             }
         );
-    };
+    }else{
+        res.sendStatus(400);
+    }
 
 }
 });
