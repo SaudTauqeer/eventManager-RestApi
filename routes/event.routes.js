@@ -19,21 +19,32 @@ let eventData = {
     "subject": req.body.subject, 
     "to": req.body.to,
     "from":  req.body.from,
-    "html": req.body.html
+    "html": req.body.html,
+    "sent" : false
 };
 if (req.user){
-    if (eventData === null){return res.sendStatus(400)};
-    userModel.findByIdAndUpdate(req.user._id,
-        { "$push": { "events":  eventData } },
-        { "new": true, "upsert": true },
-         function (err, doc) {
-             if (err) throw err;
-            res.sendStatus(201);
-        }
-    );
+    if (eventData !== null || ""){
+        userModel.findByIdAndUpdate(req.user._id,
+            { "$push": { "events":  eventData } },
+            { "new": true, "upsert": true },
+             function (err, doc) {
+                 if (err) throw err;
+                res.sendStatus(201);
+            }
+        );
+    };
+
 }
 });
 
+// userModel.findByIdAndUpdate(req.user._id,
+//     { "$push": { "events":  eventData } },
+//     { "new": true, "upsert": true },
+//     function (err, doc) {
+//         if (err) console.log(err);
+//         res.sendStatus(201);
+//     }
+// );
 // post timeZone data route.
 router.post("/api/zone", (req, res)=> {
     //if not a authorized user.
