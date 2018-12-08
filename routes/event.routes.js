@@ -22,16 +22,18 @@ router.post("/api/event", (req, res)=>{
         "from":  req.body.from,
         "sent" : false
 };
-        if (eventData === null){return res.sendStatus(400)};
-        if (eventData === "" ) {return res.sendStatus(400)};
-        userModel.findByIdAndUpdate(req.user._id,
-            { "$push": { "events":  eventData } },
-            { "new": true, "upsert": true },
-            function (err, doc) {
-                if (err) console.log(err);
-                res.sendStatus(201);
+        if (eventData !== null){
+            if (eventData !== ""){
+                userModel.findByIdAndUpdate(req.user._id,
+                    { "$push": { "events":  eventData } },
+                    { "new": true, "upsert": true },
+                    function (err, doc) {
+                        if (err) console.log(err);
+                        res.sendStatus(201);
+                    }
+                );
             }
-        );
+        }
     }
 
 }
