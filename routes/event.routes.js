@@ -23,7 +23,7 @@ router.post("/api/event", (req, res)=>{
         "sent" : false
 };
 
-    if (eventData === null) {
+    if (eventData == null) {
         res.sendStatus(400);
     }
 
