@@ -5,46 +5,33 @@ const password = process.env.ALL_USER_DATA_ROUTE_PASSWORD;
 
 //Create a new event
 router.post("/api/event", (req, res)=>{
-    // statment that checks if form data is okay.
-    const invalidFormStatement = 
-    (req.body.event && req.body.sendingHour
-    && req.body.sendingMinutes &&
-    req.body.date && req.body.text &&
-    req.body.subject && req.body.to &&
-    req.body.from && req.body.year && req.body.month && req.body.day);
-
-
-    //if not a authorized user.
-    if (!req.user) {res.sendStatus(401)};
-    // if authorized
-    if (req.user) {
-        if (invalidFormStatement === null){return res.sendStatus(400);}
-        if (invalidFormStatement === ""){return res.sendStatus(400);}
-    // Form data empty or not a user return 400 code.
-        // if form is valid
-        let eventData = {
-            "event": req.body.event, 
-            "sendingHour": req.body.sendingHour, 
-            "sendingMinutes": req.body.sendingMinutes,
-            "cardUrl": req.body.cardUrl, 
-            "year": req.body.year,
-            "month": req.body.month,
-            "day": req.body.day, 
-            "text": req.body.text, 
-            "subject": req.body.subject, 
-            "to": req.body.to,
-            "from":  req.body.from,
-            "html": req.body.html,
-            "sent" : false
-        };
-        userModel.findByIdAndUpdate(req.user._id,
-            { "$push": { "events":  eventData } },
-            { "new": true, "upsert": true },
-            function (err, doc) {
-                if (err) throw err;
-                res.sendStatus(201);
-            }
-        );
+    if (!res.user) {return res.sendStatus(401)};
+    // event data to be stored.
+let eventData = {
+    "event": req.body.event, 
+    "sendingHour": req.body.sendingHour, 
+    "sendingMinutes": req.body.sendingMinutes,
+    "cardUrl": req.body.cardUrl, 
+    "year": req.body.year,
+    "month": req.body.month,
+    "day": req.body.day, 
+    "text": req.body.text, 
+    "subject": req.body.subject, 
+    "to": req.body.to,
+    "from":  req.body.from,
+    "html": req.body.html,
+    "sent" : false
+};
+if (req.user){
+    if (eventData === null || ""){return res.sendStatus(401)};
+    userModel.findByIdAndUpdate(req.user._id,
+        { "$push": { "events":  eventData } },
+        { "new": true, "upsert": true },
+         function (err, doc) {
+             if (err) throw err;
+            res.sendStatus(201);
+        }
+    );
 }
 });
 
