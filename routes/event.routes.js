@@ -6,7 +6,8 @@ const password = process.env.ALL_USER_DATA_ROUTE_PASSWORD;
 //Create a new event
 router.post("/api/event", (req, res)=>{
     if (!req.user) {return res.sendStatus(401)};
-        // event data to be stored.
+    if (req.user){
+    // event data to be stored.
     let eventData = {
         "event": req.body.event, 
         "sendingHour": req.body.sendingHour, 
@@ -21,7 +22,6 @@ router.post("/api/event", (req, res)=>{
         "from":  req.body.from,
         "sent" : false
 };
-    if (req.user){
         if (eventData === null || ""){return res.sendStatus(400)};
         userModel.findByIdAndUpdate(req.user._id,
             { "$push": { "events":  eventData } },
