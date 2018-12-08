@@ -26,10 +26,10 @@ router.post("/api/event", (req, res)=>{
     userModel.findByIdAndUpdate(req.user._id,
     { "$push": { "events":  eventData } },
     { "new": true, "upsert": true })
-    .then(res => res.sendStatus(201))
+    .then( res.sendStatus(201))
     .catch(err => {
+        res.sendStatus(501);
         console.log(err);
-        res.sendStatus(500);
     })
 
     }
