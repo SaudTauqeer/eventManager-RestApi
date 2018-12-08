@@ -6,7 +6,13 @@ const password = process.env.ALL_USER_DATA_ROUTE_PASSWORD;
 //Create a new event
 router.post("/api/event", (req, res)=>{
     if (!req.user) {return res.sendStatus(401)};
+    
     if (req.user){
+        if (req.body.event && req.body.sendingHour && req.body.sendingMinutes 
+            && req.body.cardUrl && req.body.year && req.body.month && req.body.day 
+            && req.body.text && req.body.subject && req.body.to && req.body.from == null) {
+                return res.sendStatus(401);
+            }
     // event data to be stored.
     let eventData = {
         "event": req.body.event, 
@@ -22,14 +28,6 @@ router.post("/api/event", (req, res)=>{
         "from":  req.body.from,
         "sent" : false
 };
-
-if (req.body.event && req.body.sendingHour && req.body.sendingMinutes 
-    && req.body.cardUrl && req.body.year && req.body.month && req.body.day 
-    && req.body.text && req.body.subject && req.body.to && req.body.from == null) {
-        return res.sendStatus(401);
-    }
-
-
         userModel.findByIdAndUpdate(req.user._id,
             { "$push": { "events":  eventData } },
             { "new": true, "upsert": true })
