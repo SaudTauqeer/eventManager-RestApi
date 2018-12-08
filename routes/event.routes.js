@@ -23,11 +23,13 @@ router.post("/api/event", (req, res)=>{
         "sent" : false
 };
 
-    if (eventData == null) {
-        res.sendStatus(400);
+if (req.body.event && req.body.sendingHour && req.body.sendingMinutes 
+    && req.body.cardUrl && req.body.year && req.body.month && req.body.day 
+    && req.body.text && req.body.subject && req.body.to && req.body.from == null) {
+        res.sendStatus(401);
     }
 
-    if (eventData !== null) {
+
         userModel.findByIdAndUpdate(req.user._id,
             { "$push": { "events":  eventData } },
             { "new": true, "upsert": true })
@@ -36,9 +38,6 @@ router.post("/api/event", (req, res)=>{
                 res.sendStatus(501);
                 console.log(err);
             });
-    }
-
-
     }
 
 });
