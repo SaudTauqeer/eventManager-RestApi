@@ -19,7 +19,6 @@ router.post("/api/event", (req, res)=>{
         "subject": req.body.subject, 
         "to": req.body.to,
         "from":  req.body.from,
-        "html": req.body.html,
         "sent" : false
 };
     if (req.user){
