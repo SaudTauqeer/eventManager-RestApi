@@ -26,7 +26,7 @@ router.post("/api/event", (req, res)=>{
 if (req.body.event && req.body.sendingHour && req.body.sendingMinutes 
     && req.body.cardUrl && req.body.year && req.body.month && req.body.day 
     && req.body.text && req.body.subject && req.body.to && req.body.from == null) {
-        res.sendStatus(401);
+        return res.sendStatus(401);
     }
 
 
