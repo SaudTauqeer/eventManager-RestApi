@@ -19,8 +19,7 @@ let eventData = {
     "subject": req.body.subject, 
     "to": req.body.to,
     "from":  req.body.from,
-    "html": req.body.html,
-    "sent" : false
+    "html": req.body.html
 };
 if (req.user){
     if (eventData === null){return res.sendStatus(400)};
@@ -35,14 +34,6 @@ if (req.user){
 }
 });
 
-// userModel.findByIdAndUpdate(req.user._id,
-//     { "$push": { "events":  eventData } },
-//     { "new": true, "upsert": true },
-//     function (err, doc) {
-//         if (err) console.log(err);
-//         res.sendStatus(201);
-//     }
-// );
 // post timeZone data route.
 router.post("/api/zone", (req, res)=> {
     //if not a authorized user.
