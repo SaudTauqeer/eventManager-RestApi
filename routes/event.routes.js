@@ -27,7 +27,7 @@ router.post("/api/event", (req, res)=>{
             { "$push": { "events":  eventData } },
             { "new": true, "upsert": true },
             function (err, doc) {
-                if (err) throw err;
+                if (err) console.log(err);
                 res.sendStatus(201);
             }
         );
