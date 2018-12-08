@@ -19,11 +19,10 @@ let eventData = {
     "subject": req.body.subject, 
     "to": req.body.to,
     "from":  req.body.from,
-    "html": req.body.html,
     "sent" : false
 };
 if (req.user){
-    if (eventData !== null || ""){
+//     if (eventData !== null || ""){
         userModel.findByIdAndUpdate(req.user._id,
             { "$push": { "events":  eventData } },
             { "new": true, "upsert": true },
@@ -32,9 +31,9 @@ if (req.user){
                 res.sendStatus(201);
             }
         );
-    }else{
-        res.sendStatus(400);
-    }
+//     }else{
+//         res.sendStatus(400);
+//     }
 
 }
 });
