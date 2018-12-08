@@ -5,15 +5,6 @@ const password = process.env.ALL_USER_DATA_ROUTE_PASSWORD;
 
 //Create a new event
 router.post("/api/event", (req, res)=>{
-    // statment that checks if form data is okay.
-    const invalidFormStatement = 
-    (req.body.event && req.body.sendingHour
-    && req.body.sendingMinutes &&
-    req.body.date && req.body.text &&
-    req.body.subject && req.body.to &&
-    req.body.from && req.body.year && req.body.month && req.body.day);
-
-
     //if not a authorized user.
     if (!req.user) {res.sendStatus(401)};
     // if authorized
