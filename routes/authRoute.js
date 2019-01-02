@@ -6,7 +6,7 @@ const router = require('express').Router();
     // auth logout
     router.get('/logout', (req, res) => {
         req.logout();
-        res.redirect("http://eventmanager-web.herokuapp.com");
+        res.redirect("https://eventmanager-web.herokuapp.com");
     });
 
     // auth with google+
@@ -17,7 +17,7 @@ const router = require('express').Router();
     // callback route for google to redirect to
     // hand control to passport to use code to grab profile info
     router.get('/google/redirect', passport.authenticate('google'), (req, res) => {
-        res.redirect("http://eventmanager-web.herokuapp.com/timezone");
+        res.redirect("https://eventmanager-web.herokuapp.com/timezone");
 
     });
 
